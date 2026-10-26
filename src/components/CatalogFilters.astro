@@ -1,0 +1,92 @@
+---
+import type { CoolingType, ProductCategory, ProductType } from "../config/catalog";
+
+interface Props {
+  categories: readonly ProductCategory[];
+  productTypes: readonly ProductType[];
+  coolingTypes: readonly CoolingType[];
+}
+
+const { categories, productTypes, coolingTypes } = Astro.props;
+---
+
+<form
+  data-catalog-filters
+  aria-label="Filtros del catálogo"
+  class="grid gap-4 rounded-xl border border-steel-200 bg-white p-4 sm:grid-cols-2 sm:p-5 lg:grid-cols-4"
+>
+  <div class="sm:col-span-2 lg:col-span-1">
+    <label for="catalog-search" class="mb-1.5 block text-sm font-medium text-steel-800">
+      Buscar
+    </label>
+    <input
+      id="catalog-search"
+      data-filter-search
+      type="search"
+      name="search"
+      placeholder="Nombre o descripción"
+      autocomplete="off"
+      class="min-h-11 w-full rounded-lg border border-steel-300 bg-white px-3 text-sm text-steel-900 placeholder:text-steel-400 focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
+    />
+  </div>
+
+  <div>
+    <label for="catalog-category" class="mb-1.5 block text-sm font-medium text-steel-800">
+      Categoría
+    </label>
+    <select
+      id="catalog-category"
+      data-filter-category
+      name="category"
+      class="min-h-11 w-full rounded-lg border border-steel-300 bg-white px-3 text-sm text-steel-900 focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
+    >
+      <option value="">Todas las categorías</option>
+      {categories.map((category) => (
+        <option value={category.slug}>{category.name}</option>
+      ))}
+    </select>
+  </div>
+
+  <div>
+    <label for="catalog-type" class="mb-1.5 block text-sm font-medium text-steel-800">
+      Tipo de producto
+    </label>
+    <select
+      id="catalog-type"
+      data-filter-type
+      name="productType"
+      class="min-h-11 w-full rounded-lg border border-steel-300 bg-white px-3 text-sm text-steel-900 focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
+    >
+      <option value="">Todos los tipos</option>
+      {productTypes.map((productType) => (
+        <option value={productType.slug}>{productType.name}</option>
+      ))}
+    </select>
+  </div>
+
+  <div>
+    <label for="catalog-cooling" class="mb-1.5 block text-sm font-medium text-steel-800">
+      Tipo de frío
+    </label>
+    <select
+      id="catalog-cooling"
+      data-filter-cooling
+      name="coolingType"
+      class="min-h-11 w-full rounded-lg border border-steel-300 bg-white px-3 text-sm text-steel-900 focus:border-brand-700 focus:outline-none focus:ring-2 focus:ring-brand-100"
+    >
+      <option value="">Todos los tipos de frío</option>
+      {coolingTypes.map((coolingType) => (
+        <option value={coolingType.slug}>{coolingType.name}</option>
+      ))}
+    </select>
+  </div>
+
+  <div class="sm:col-span-2 lg:col-span-4">
+    <button
+      type="reset"
+      class="min-h-10 rounded-lg px-3 text-sm font-semibold text-brand-900 hover:bg-brand-50"
+    >
+      Limpiar filtros
+    </button>
+  </div>
+</form>

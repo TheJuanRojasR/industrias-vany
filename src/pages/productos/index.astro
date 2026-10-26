@@ -1,0 +1,104 @@
+---
+import { getCollection } from "astro:content";
+import CatalogFilters from "../../components/CatalogFilters.astro";
+import ProductCard from "../../components/ProductCard.astro";
+import { COOLING_TYPES, PRODUCT_CATEGORIES, PRODUCT_TYPES } from "../../config/catalog";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const products = await getCollection("products", ({ data }) =>
+  import.meta.env.PROD ? data.draft !== true : true,
+);
+
+const sortedProducts = [...products].sort((a, b) => a.data.name.localeCompare(b.data.name, "es"));
+
+const noindex =
+  import.meta.env.DEV || products.length === 0 || products.every(({ data }) => data.sample);
+---
+
+<BaseLayout
+  title="Catálogo de productos"
+  description="Explora las líneas de refrigeración, cocción, extracción y mobiliario de Industrias Vany. Todos los productos se cotizan por WhatsApp."
+  noindex={noindex}
+>
+  <section class="border-b border-steel-200 bg-steel-50">
+    <div class="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
+      <nav aria-label="Migas de pan" class="text-sm text-steel-500">
+        <ol class="flex items-center gap-2">
+          <li>
+            <a href="/" class="hover:text-steel-950">
+              Inicio
+            </a>
+          </li>
+          <li aria-hidden="true">/</li>
+          <li aria-current="page" class="text-steel-700">
+            Productos
+          </li>
+        </ol>
+      </nav>
+
+      <p class="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-brand-700">Catálogo</p>
+      <h1 class="mt-3 max-w-3xl font-display text-4xl font-semibold tracking-tight text-steel-950 sm:text-5xl">
+        Equipos industriales en acero inoxidable
+      </h1>
+      <p class="mt-4 max-w-2xl text-base leading-7 text-steel-600 sm:text-lg">
+        Busca y filtra por categoría, tipo de equipo y tipo de frío. Todos los productos se ofrecen
+        para cotización, sin precios publicados.
+      </p>
+    </div>
+  </section>
+
+  <section aria-labelledby="catalog-title" class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+    <h2 id="catalog-title" class="sr-only">
+      Buscar y filtrar productos
+    </h2>
+    <CatalogFilters
+      categories={PRODUCT_CATEGORIES}
+      productTypes={PRODUCT_TYPES}
+      coolingTypes={COOLING_TYPES}
+    />
+
+    {import.meta.env.DEV && products.some(({ data }) => data.sample) && (
+      <p class="mt-4 rounded-lg bg-amber-50 px-4 py-3 text-sm text-amber-900">
+        Los productos visibles son ejemplos para probar la navegación. Se excluyen del build de
+        producción hasta que se reemplacen por fichas reales.
+      </p>
+    )}
+
+    {products.length > 0 ? (
+      <>
+        <p data-results-count aria-live="polite" class="mt-6 text-sm text-steel-600">
+          {products.length} productos
+        </p>
+        <ul class="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {sortedProducts.map((product) => (
+            <ProductCard product={product} />
+          ))}
+        </ul>
+        <div
+          data-empty-results
+          hidden
+          class="mt-8 rounded-xl border border-dashed border-steel-300 bg-steel-50 px-6 py-12 text-center"
+        >
+          <h2 class="font-display text-xl font-semibold text-steel-950">
+            No encontramos productos con esos filtros
+          </h2>
+          <p class="mt-2 text-sm text-steel-600">Prueba con otra búsqueda o limpia los filtros.</p>
+        </div>
+      </>
+    ) : (
+      <div class="mt-8 rounded-xl border border-dashed border-steel-300 bg-steel-50 px-6 py-14 text-center">
+        <h2 class="font-display text-xl font-semibold text-steel-950">
+          El catálogo se está preparando
+        </h2>
+        <p class="mx-auto mt-2 max-w-lg text-sm leading-6 text-steel-600">
+          Las fichas reales se publicarán cuando recibamos los modelos, las especificaciones y las
+          imágenes del cliente.
+        </p>
+      </div>
+    )}
+  </section>
+
+  <script>
+    import "../../scripts/catalog-filters";
+  </script>
+</BaseLayout>

@@ -14,11 +14,12 @@
     "astro": "astro",
     "sync": "astro sync",
     "check": "astro check",
+    "test": "node --test",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "verify": "pnpm check && pnpm lint && pnpm format:check && pnpm build"
+    "verify": "pnpm test && pnpm check && pnpm lint && pnpm format:check && pnpm build"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
