@@ -8,7 +8,8 @@ interface Props {
 
 const { service, index } = Astro.props;
 const number = String(index + 1).padStart(2, "0");
-const href = `#${service.slug}`;
+const href = service.detailPage ?? `#${service.slug}`;
+const ctaLabel = service.detailPage ? "Ver página" : "Ver detalle";
 ---
 
 <li class="h-full">
@@ -40,6 +41,6 @@ const href = `#${service.slug}`;
       {service.name}
     </h3>
     <p class="mt-2 flex-1 text-sm leading-6 text-steel-600">{service.summary}</p>
-    <span class="mt-5 text-sm font-semibold text-brand-900">Ver detalle</span>
+    <span class="mt-5 text-sm font-semibold text-brand-900">{ctaLabel}</span>
   </a>
 </li>

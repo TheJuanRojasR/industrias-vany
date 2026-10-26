@@ -1,4 +1,13 @@
-export const SERVICES = [
+export interface Service {
+  slug: string;
+  name: string;
+  summary: string;
+  description: string;
+  bullets: readonly string[];
+  detailPage?: string;
+}
+
+export const SERVICES: readonly Service[] = [
   {
     slug: "fabricacion-a-medida",
     name: "Fabricación a medida",
@@ -31,6 +40,7 @@ export const SERVICES = [
     description:
       "Realizamos mantenimiento preventivo para cuidar el equipamiento y mantenimiento correctivo para atender fallas.",
     bullets: ["Mantenimiento preventivo.", "Mantenimiento correctivo.", "Atención de fallas."],
+    detailPage: "/servicios/mantenimiento/",
   },
   {
     slug: "asesoria-diseno",
@@ -100,6 +110,4 @@ export const SERVICES = [
       "Piezas y estructuras a medida.",
     ],
   },
-] as const;
-
-export type Service = (typeof SERVICES)[number];
+] as const satisfies readonly Service[];

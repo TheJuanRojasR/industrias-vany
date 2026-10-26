@@ -1,0 +1,166 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { buildServiceSchema } from "../../lib/service-schema";
+import { buildWhatsAppUrl } from "../../lib/whatsapp";
+
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
+const quoteUrl = buildWhatsAppUrl(
+  "Hola, quisiera consultar por el servicio de mantenimiento de un equipo.",
+);
+const serviceSchema = buildServiceSchema({
+  name: "Mantenimiento preventivo y correctivo",
+  description: "Mantenimiento preventivo y correctivo de equipos industriales en acero inoxidable.",
+  url: canonical.toString(),
+});
+---
+
+<BaseLayout
+  title="Mantenimiento preventivo y correctivo"
+  description="Mantenimiento preventivo y correctivo para equipos industriales en acero inoxidable. Consulta disponibilidad y coordinación por WhatsApp."
+  noindex
+>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <section class="border-b border-steel-200 bg-steel-50">
+    <div class="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
+      <nav aria-label="Migas de pan" class="text-sm text-steel-500">
+        <ol class="flex flex-wrap items-center gap-2">
+          <li>
+            <a href="/" class="hover:text-steel-950">
+              Inicio
+            </a>
+          </li>
+          <li aria-hidden="true">/</li>
+          <li>
+            <a href="/servicios/" class="hover:text-steel-950">
+              Servicios
+            </a>
+          </li>
+          <li aria-hidden="true">/</li>
+          <li aria-current="page" class="text-steel-700">
+            Mantenimiento
+          </li>
+        </ol>
+      </nav>
+
+      <p class="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-brand-700">Servicio</p>
+      <h1 class="mt-3 max-w-3xl font-display text-4xl font-semibold tracking-tight text-steel-950 sm:text-5xl">
+        Mantenimiento preventivo y correctivo
+      </h1>
+      <p class="mt-4 max-w-2xl text-base leading-7 text-steel-600 sm:text-lg">
+        Cuidamos el equipamiento y atendemos fallas para acompañar la continuidad de la operación.
+        El servicio se coordina según el equipo y la necesidad de cada cliente.
+      </p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
+    <div class="grid gap-6 lg:grid-cols-2">
+      <article class="rounded-xl border border-steel-200 bg-white p-6 sm:p-8">
+        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-700">Preventivo</p>
+        <h2 class="mt-3 font-display text-2xl font-semibold tracking-tight text-steel-950">
+          Mantenimiento preventivo
+        </h2>
+        <p class="mt-3 text-base leading-7 text-steel-600">
+          Revisiones y cuidados programados para detectar necesidades del equipo antes de que
+          afecten la operación.
+        </p>
+        <ul class="mt-5 space-y-2">
+          {[
+            "Revisión del estado del equipo.",
+            "Limpieza y ajustes básicos.",
+            "Detección temprana de fallas.",
+          ].map((item) => (
+            <li class="flex gap-3 text-sm leading-6 text-steel-700">
+              <span aria-hidden="true" class="mt-2 size-1.5 shrink-0 rounded-full bg-brand-500" />
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </article>
+
+      <article class="rounded-xl border border-steel-200 bg-white p-6 sm:p-8">
+        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-700">Correctivo</p>
+        <h2 class="mt-3 font-display text-2xl font-semibold tracking-tight text-steel-950">
+          Mantenimiento correctivo
+        </h2>
+        <p class="mt-3 text-base leading-7 text-steel-600">
+          Atención de fallas del equipamiento, con diagnóstico y coordinación del servicio
+          necesario.
+        </p>
+        <ul class="mt-5 space-y-2">
+          {["Atención de fallas.", "Diagnóstico del problema.", "Reparación y pruebas."].map(
+            (item) => (
+              <li class="flex gap-3 text-sm leading-6 text-steel-700">
+                <span aria-hidden="true" class="mt-2 size-1.5 shrink-0 rounded-full bg-brand-500" />
+                <span>{item}</span>
+              </li>
+            ),
+          )}
+        </ul>
+      </article>
+    </div>
+
+    <section aria-labelledby="process-title" class="mt-12 border-t border-steel-200 pt-10">
+      <h2
+        id="process-title"
+        class="font-display text-2xl font-semibold tracking-tight text-steel-950"
+      >
+        Cómo solicitar el servicio
+      </h2>
+      <ol class="mt-6 grid gap-4 sm:grid-cols-3">
+        {[
+          {
+            title: "Contacto",
+            description: "Nos cuentas qué equipo necesitas atender y qué está ocurriendo.",
+          },
+          {
+            title: "Coordinación",
+            description: "Revisamos el caso y coordinamos el alcance del servicio.",
+          },
+          {
+            title: "Atención",
+            description: "Realizamos el mantenimiento y revisamos el resultado con el cliente.",
+          },
+        ].map((step, index) => (
+          <li class="rounded-xl border border-steel-200 bg-steel-50 p-5">
+            <p class="font-display text-sm font-semibold text-brand-700">0{index + 1}</p>
+            <h3 class="mt-2 font-display text-lg font-semibold text-steel-950">{step.title}</h3>
+            <p class="mt-2 text-sm leading-6 text-steel-600">{step.description}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <div class="mt-10 rounded-xl border border-steel-200 bg-white p-6 sm:p-8">
+      <h2 class="font-display text-xl font-semibold text-steel-950">
+        ¿Necesitas coordinar un mantenimiento?
+      </h2>
+      <p class="mt-2 max-w-2xl text-sm leading-6 text-steel-600">
+        Escríbenos con el tipo de equipo y la necesidad. Sin precios publicados: cada servicio se
+        cotiza según el caso.
+      </p>
+      <div class="mt-5 flex flex-wrap items-center gap-3">
+        {quoteUrl ? (
+          <a
+            href={quoteUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex min-h-12 items-center justify-center rounded-lg bg-brand-900 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
+          >
+            Consultar por WhatsApp
+          </a>
+        ) : import.meta.env.DEV ? (
+          <span class="rounded-lg bg-steel-100 px-4 py-3 text-sm font-medium text-steel-600">
+            WhatsApp pendiente de configurar
+          </span>
+        ) : null}
+        <a
+          href="/servicios/"
+          class="inline-flex min-h-12 items-center justify-center rounded-lg border border-steel-200 bg-white px-5 py-3 text-sm font-semibold text-steel-800 transition-colors hover:bg-steel-50"
+        >
+          Volver a Servicios
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

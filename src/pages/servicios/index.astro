@@ -87,6 +87,14 @@ const serviceSchema = buildServiceSchema({
                 </li>
               ))}
             </ul>
+            {service.detailPage && (
+              <a
+                href={service.detailPage}
+                class="mt-5 inline-flex text-sm font-semibold text-brand-900 hover:text-brand-700"
+              >
+                Ver página de {service.name}
+              </a>
+            )}
           </div>
         </div>
       </section>
@@ -94,8 +102,8 @@ const serviceSchema = buildServiceSchema({
 
     {import.meta.env.DEV && (
       <p class="mt-6 rounded-lg bg-amber-50 px-4 py-3 text-sm text-amber-900">
-        Las páginas dedicadas de fabricación a medida, mantenimiento y equipamiento integral se
-        agregarán en los siguientes pasos.
+        Las páginas dedicadas de fabricación a medida y equipamiento integral se agregarán en los
+        siguientes pasos.
       </p>
     )}
   </div>
