@@ -20,6 +20,7 @@ export const SERVICES: readonly Service[] = [
       "Trabajos de soldadura, corte y doblez.",
       "Terminaciones para uso intensivo y limpieza sanitaria.",
     ],
+    detailPage: "/servicios/fabricacion-a-medida/",
   },
   {
     slug: "instalacion",
