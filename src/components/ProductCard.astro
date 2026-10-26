@@ -22,6 +22,7 @@ const searchText = [
   ...coolingTypeNames,
 ].join(" ");
 const quoteUrl = buildWhatsAppUrl(`Hola, me interesa cotizar el producto ${product.data.name}.`);
+const detailUrl = `/productos/${product.id}/`;
 ---
 
 <li
@@ -65,7 +66,11 @@ const quoteUrl = buildWhatsAppUrl(`Hola, me interesa cotizar el producto ${produ
         )}
       </div>
 
-      <h2 class="mt-2 font-display text-lg font-semibold text-steel-950">{product.data.name}</h2>
+      <h2 class="mt-2 font-display text-lg font-semibold text-steel-950">
+        <a href={detailUrl} class="hover:text-brand-900">
+          {product.data.name}
+        </a>
+      </h2>
       <p class="mt-2 text-sm leading-6 text-steel-600">{product.data.summary}</p>
 
       {coolingTypeNames.length > 0 && (
@@ -94,9 +99,9 @@ const quoteUrl = buildWhatsAppUrl(`Hola, me interesa cotizar el producto ${produ
         ) : null}
       </div>
 
-      <p class="mt-3 text-xs text-steel-500">
-        La ficha detallada se agregará en el siguiente paso.
-      </p>
+      <a href={detailUrl} class="mt-3 text-sm font-semibold text-brand-900 hover:text-brand-700">
+        Ver ficha del producto
+      </a>
     </div>
   </article>
 </li>

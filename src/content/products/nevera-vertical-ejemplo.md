@@ -8,6 +8,16 @@ description: "Registro de ejemplo para probar el catálogo. Reemplazar con la fi
 featured: false
 draft: true
 sample: true
+specs:
+  - label: "Material"
+    value: "Acero inoxidable AISI 304 (ejemplo)"
+  - label: "Medidas"
+    value: "Pendiente de confirmar"
+features:
+  - "Característica de ejemplo pendiente de validar."
+applications:
+  - "Uso profesional (ejemplo)"
+warranty: "Garantía pendiente de confirmar."
 images: []
 ---
 

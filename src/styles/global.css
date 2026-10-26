@@ -69,3 +69,47 @@ details > summary {
 details > summary::-webkit-details-marker {
   display: none;
 }
+
+.prose-content {
+  @apply text-base leading-7 text-steel-700;
+}
+
+.prose-content :where(p, ul, ol, blockquote, pre, table) {
+  @apply my-4;
+}
+
+.prose-content :where(h2) {
+  @apply mt-10 mb-3 font-display text-2xl font-semibold text-steel-950;
+}
+
+.prose-content :where(h3) {
+  @apply mt-8 mb-2 font-display text-xl font-semibold text-steel-950;
+}
+
+.prose-content :where(ul) {
+  @apply list-disc pl-6;
+}
+
+.prose-content :where(ol) {
+  @apply list-decimal pl-6;
+}
+
+.prose-content :where(li) {
+  @apply my-1;
+}
+
+.prose-content :where(a) {
+  @apply font-medium text-brand-900 underline underline-offset-4 hover:text-brand-700;
+}
+
+.prose-content :where(strong) {
+  @apply font-semibold text-steel-950;
+}
+
+.prose-content :where(blockquote) {
+  @apply border-l-4 border-brand-500 pl-4 text-steel-600 italic;
+}
+
+.prose-content :where(code) {
+  @apply rounded bg-steel-100 px-1.5 py-0.5 font-mono text-sm text-steel-900;
+}
