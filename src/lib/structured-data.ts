@@ -39,3 +39,18 @@ export function buildBreadcrumbSchema(items: Array<{ name: string; url: string }
     })),
   };
 }
+
+export function buildFaqSchema(items: ReadonlyArray<{ question: string; answer: string }>): JsonLd {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+}
