@@ -66,6 +66,7 @@ export const SERVICES: readonly Service[] = [
       "Coordinación de las líneas de producto.",
       "Acompañamiento hasta la puesta en marcha.",
     ],
+    detailPage: "/servicios/equipamiento-integral/",
   },
   {
     slug: "repuestos",

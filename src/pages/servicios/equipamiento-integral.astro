@@ -1,0 +1,167 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { buildServiceSchema } from "../../lib/service-schema";
+import { buildWhatsAppUrl } from "../../lib/whatsapp";
+
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
+const quoteUrl = buildWhatsAppUrl(
+  "Hola, quisiera consultar por un proyecto de equipamiento integral para una cocina profesional.",
+);
+const serviceSchema = buildServiceSchema({
+  name: "Equipamiento integral de cocinas profesionales",
+  description:
+    "Proyectos completos de equipamiento para cocinas profesionales, desde la definición de necesidades hasta la puesta en marcha.",
+  url: canonical.toString(),
+});
+---
+
+<BaseLayout
+  title="Equipamiento integral"
+  description="Proyectos completos de equipamiento para cocinas profesionales: definición de necesidades, coordinación de equipos, instalación y puesta en marcha."
+  noindex
+>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <section class="border-b border-steel-200 bg-steel-50">
+    <div class="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
+      <nav aria-label="Migas de pan" class="text-sm text-steel-500">
+        <ol class="flex flex-wrap items-center gap-2">
+          <li>
+            <a href="/" class="hover:text-steel-950">
+              Inicio
+            </a>
+          </li>
+          <li aria-hidden="true">/</li>
+          <li>
+            <a href="/servicios/" class="hover:text-steel-950">
+              Servicios
+            </a>
+          </li>
+          <li aria-hidden="true">/</li>
+          <li aria-current="page" class="text-steel-700">
+            Equipamiento integral
+          </li>
+        </ol>
+      </nav>
+
+      <p class="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-brand-700">Servicio</p>
+      <h1 class="mt-3 max-w-3xl font-display text-4xl font-semibold tracking-tight text-steel-950 sm:text-5xl">
+        Equipamiento integral
+      </h1>
+      <p class="mt-4 max-w-2xl text-base leading-7 text-steel-600 sm:text-lg">
+        Acompañamos proyectos completos de equipamiento para cocinas profesionales, desde la
+        definición de las necesidades hasta la puesta en marcha.
+      </p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
+    <div class="grid gap-8 lg:grid-cols-2 lg:gap-14">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-700">Alcance</p>
+        <h2 class="mt-3 font-display text-2xl font-semibold tracking-tight text-steel-950 sm:text-3xl">
+          Qué incluye
+        </h2>
+        <ul class="mt-5 space-y-3">
+          {[
+            "Definición del equipamiento según la operación.",
+            "Coordinación de las distintas líneas de producto.",
+            "Instalación y puesta en marcha.",
+            "Acompañamiento durante el proyecto.",
+          ].map((item) => (
+            <li class="flex gap-3 text-sm leading-6 text-steel-700">
+              <span aria-hidden="true" class="mt-2 size-1.5 shrink-0 rounded-full bg-brand-500" />
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="rounded-xl border border-steel-200 bg-gradient-to-br from-steel-50 via-white to-brand-50 p-6 sm:p-8">
+        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-700">Sectores</p>
+        <h2 class="mt-3 font-display text-2xl font-semibold tracking-tight text-steel-950">
+          Para distintos tipos de negocio
+        </h2>
+        <ul class="mt-5 flex flex-wrap gap-2">
+          {[
+            "Restaurantes",
+            "Hoteles",
+            "Panaderías",
+            "Instituciones",
+            "Otros negocios gastronómicos",
+          ].map((sector) => (
+            <li class="rounded-full bg-white px-3 py-1 text-sm text-steel-700 shadow-sm">
+              {sector}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <section aria-labelledby="process-title" class="mt-12 border-t border-steel-200 pt-10">
+      <h2
+        id="process-title"
+        class="font-display text-2xl font-semibold tracking-tight text-steel-950"
+      >
+        Cómo trabajamos
+      </h2>
+      <ol class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          {
+            title: "Relevamiento",
+            description: "Conocemos el espacio, la operación y las necesidades del proyecto.",
+          },
+          {
+            title: "Propuesta",
+            description: "Definimos el equipamiento y los detalles junto al cliente.",
+          },
+          {
+            title: "Coordinación",
+            description: "Organizamos las líneas de producto y la instalación.",
+          },
+          {
+            title: "Puesta en marcha",
+            description: "Acompañamos la entrega y dejamos el equipamiento listo para operar.",
+          },
+        ].map((step, index) => (
+          <li class="rounded-xl border border-steel-200 bg-white p-5">
+            <p class="font-display text-sm font-semibold text-brand-700">0{index + 1}</p>
+            <h3 class="mt-2 font-display text-lg font-semibold text-steel-950">{step.title}</h3>
+            <p class="mt-2 text-sm leading-6 text-steel-600">{step.description}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <div class="mt-10 rounded-xl border border-steel-200 bg-white p-6 sm:p-8">
+      <h2 class="font-display text-xl font-semibold text-steel-950">
+        ¿Estás equipando una cocina?
+      </h2>
+      <p class="mt-2 max-w-2xl text-sm leading-6 text-steel-600">
+        Contanos qué tipo de negocio tienes, el espacio disponible y qué necesitas equipar. Sin
+        precios publicados: cada proyecto se cotiza según el caso.
+      </p>
+      <div class="mt-5 flex flex-wrap items-center gap-3">
+        {quoteUrl ? (
+          <a
+            href={quoteUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex min-h-12 items-center justify-center rounded-lg bg-brand-900 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
+          >
+            Consultar por WhatsApp
+          </a>
+        ) : import.meta.env.DEV ? (
+          <span class="rounded-lg bg-steel-100 px-4 py-3 text-sm font-medium text-steel-600">
+            WhatsApp pendiente de configurar
+          </span>
+        ) : null}
+        <a
+          href="/servicios/"
+          class="inline-flex min-h-12 items-center justify-center rounded-lg border border-steel-200 bg-white px-5 py-3 text-sm font-semibold text-steel-800 transition-colors hover:bg-steel-50"
+        >
+          Volver a Servicios
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
