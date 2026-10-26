@@ -1,2 +1,21 @@
+# Local tooling and internal planning documents
 .atl/
 .project/
+
+# Dependencies and generated output
+node_modules/
+dist/
+.astro/
+coverage/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Logs and operating system files
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+.DS_Store
+*.swp
