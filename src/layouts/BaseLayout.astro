@@ -1,0 +1,53 @@
+---
+import "@fontsource-variable/inter";
+import "@fontsource-variable/archivo";
+import "../styles/global.css";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import { SITE } from "../config/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+
+const { title, description = SITE.description, noindex = false } = Astro.props;
+const pageTitle = title ? `${title} | ${SITE.name}` : `${SITE.name} | Equipos industriales`;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
+---
+
+<!doctype html>
+<html lang={SITE.language}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#0B2A5B" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:locale" content={SITE.locale} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+  </head>
+
+  <body class="min-h-screen">
+    <a class="skip-link" href="#main">
+      Saltar al contenido
+    </a>
+    <Header />
+    <main id="main" class="min-h-[60vh]">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
