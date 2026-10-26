@@ -1,0 +1,45 @@
+---
+import type { ProductCategory } from "../config/catalog";
+
+interface Props {
+  category: ProductCategory;
+  index: number;
+}
+
+const { category, index } = Astro.props;
+const number = String(index + 1).padStart(2, "0");
+const href = `/categorias/${category.slug}/`;
+---
+
+<li class="h-full">
+  <a
+    href={href}
+    class="group flex h-full flex-col rounded-xl border border-steel-200 bg-white p-5 transition duration-200 hover:-translate-y-1 hover:border-steel-300 hover:shadow-md sm:p-6"
+  >
+    <div class="flex items-center justify-between">
+      <span class="font-display text-3xl font-semibold tracking-tight text-brand-100">
+        {number}
+      </span>
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 24 24"
+        fill="none"
+        class="size-5 text-steel-400 transition-transform group-hover:translate-x-1 group-hover:text-brand-700 motion-reduce:transition-none"
+      >
+        <path
+          d="M5 12h14m-6-6 6 6-6 6"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </div>
+
+    <h3 class="mt-5 font-display text-xl font-semibold tracking-tight text-steel-950">
+      {category.name}
+    </h3>
+    <p class="mt-2 flex-1 text-sm leading-6 text-steel-600">{category.description}</p>
+    <span class="mt-5 text-sm font-semibold text-brand-900">Ver categoría</span>
+  </a>
+</li>
