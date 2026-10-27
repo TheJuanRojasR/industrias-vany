@@ -5,8 +5,10 @@ import CategoryCard from "../components/CategoryCard.astro";
 import ProductCard from "../components/ProductCard.astro";
 import ServiceCard from "../components/ServiceCard.astro";
 import { PRODUCT_CATEGORIES } from "../config/catalog";
+import { FAQS } from "../config/faqs";
 import { SERVICES } from "../config/services";
 import { SITE } from "../config/site";
+import { buildWhatsAppUrl } from "../lib/whatsapp";
 
 const products = await getCollection("products", ({ data }) =>
   import.meta.env.PROD ? data.draft !== true : true,
@@ -20,6 +22,14 @@ const homeServiceSlugs = new Set([
   "equipamiento-integral",
 ]);
 const homeServices = SERVICES.filter((service) => homeServiceSlugs.has(service.slug));
+
+const homeFaqQuestions = [
+  "¿Qué productos ofrecen?",
+  "¿Los productos tienen precio publicado?",
+  "¿Cómo solicito una cotización?",
+];
+const homeFaqs = FAQS.filter((faq) => homeFaqQuestions.includes(faq.question));
+const quoteUrl = buildWhatsAppUrl("Hola, quisiera consultar sobre equipamiento para mi cocina.");
 ---
 
 <BaseLayout
@@ -193,6 +203,89 @@ const homeServices = SERVICES.filter((service) => homeServiceSlugs.has(service.s
           </li>
         ))}
       </ul>
+    </div>
+  </section>
+
+  <section
+    id="preguntas"
+    aria-labelledby="home-faq-title"
+    class="border-t border-steel-200 bg-white"
+  >
+    <div class="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <div class="max-w-2xl">
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] text-brand-700">
+            Preguntas frecuentes
+          </p>
+          <h2
+            id="home-faq-title"
+            class="mt-3 font-display text-3xl font-semibold tracking-tight text-steel-950 sm:text-4xl"
+          >
+            Respuestas rápidas
+          </h2>
+          <p class="mt-3 text-base leading-7 text-steel-600">
+            Lo que más nos consultan antes de empezar un proyecto.
+          </p>
+        </div>
+        <a
+          href="/preguntas-frecuentes/"
+          class="text-sm font-semibold text-brand-900 hover:text-brand-700"
+        >
+          Ver todas las preguntas →
+        </a>
+      </div>
+
+      <div class="mt-8 max-w-3xl divide-y divide-steel-200 rounded-xl border border-steel-200 bg-white px-4 sm:px-6">
+        {homeFaqs.map((faq) => (
+          <details class="group py-4">
+            <summary class="flex cursor-pointer items-center justify-between gap-4 text-left font-medium text-steel-950">
+              <span>{faq.question}</span>
+              <span
+                aria-hidden="true"
+                class="shrink-0 text-xl font-light text-steel-400 transition-transform group-open:rotate-45"
+              >
+                +
+              </span>
+            </summary>
+            <p class="mt-3 max-w-3xl pr-6 text-sm leading-6 text-steel-600">{faq.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-brand-900 text-white">
+    <div class="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 px-4 py-14 sm:px-6 lg:flex-row lg:items-center lg:px-8">
+      <div class="max-w-2xl">
+        <h2 class="font-display text-2xl font-semibold tracking-tight sm:text-3xl">
+          ¿Necesitas equipar tu cocina?
+        </h2>
+        <p class="mt-2 text-brand-100">
+          Contanos qué necesitas y te respondemos con la información disponible.
+        </p>
+      </div>
+      <div class="flex flex-wrap items-center gap-3">
+        {quoteUrl ? (
+          <a
+            href={quoteUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex min-h-12 items-center justify-center rounded-lg bg-white px-5 py-3 text-sm font-semibold text-brand-900 transition-colors hover:bg-brand-50"
+          >
+            Consultar por WhatsApp
+          </a>
+        ) : import.meta.env.DEV ? (
+          <span class="rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-sm text-white">
+            WhatsApp pendiente de configurar
+          </span>
+        ) : null}
+        <a
+          href="/contacto/"
+          class="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/25 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/20"
+        >
+          Ir a Contacto
+        </a>
+      </div>
     </div>
   </section>
 </BaseLayout>
