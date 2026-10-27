@@ -48,4 +48,16 @@ const products = defineCollection({
     }),
 });
 
-export const collections = { products };
+const legal = defineCollection({
+  loader: glob({
+    pattern: "**/[^_]*.md",
+    base: "./src/content/legal",
+  }),
+  schema: z.object({
+    title: z.string().min(1),
+    description: z.string().min(1),
+    updated: z.string().optional(),
+  }),
+});
+
+export const collections = { products, legal };
