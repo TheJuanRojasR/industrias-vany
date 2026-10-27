@@ -4,7 +4,7 @@ category: "extraccion"
 productType: "campanas-extraccion"
 summary: "Tipo de producto confirmado; modelo y especificaciones pendientes de validar."
 description: "Registro de ejemplo para probar el catálogo. Reemplazar con la ficha real del cliente."
-featured: false
+featured: true
 draft: true
 sample: true
 specs:
