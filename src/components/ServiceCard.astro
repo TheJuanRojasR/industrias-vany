@@ -4,12 +4,13 @@ import type { Service } from "../config/services";
 interface Props {
   service: Service;
   index: number;
+  href?: string;
 }
 
-const { service, index } = Astro.props;
+const { service, index, href: hrefProp } = Astro.props;
 const number = String(index + 1).padStart(2, "0");
-const href = service.detailPage ?? `#${service.slug}`;
-const ctaLabel = service.detailPage ? "Ver página" : "Ver detalle";
+const href = hrefProp ?? service.detailPage ?? `#${service.slug}`;
+const ctaLabel = hrefProp ? "Ver servicio" : service.detailPage ? "Ver página" : "Ver detalle";
 ---
 
 <li class="h-full">
