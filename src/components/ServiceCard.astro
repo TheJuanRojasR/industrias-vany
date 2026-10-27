@@ -19,7 +19,10 @@ const ctaLabel = hrefProp ? "Ver servicio" : service.detailPage ? "Ver página" 
     class="group flex h-full flex-col rounded-xl border border-steel-200 bg-white p-5 transition duration-200 hover:-translate-y-1 hover:border-steel-300 hover:shadow-md motion-reduce:transform-none motion-reduce:transition-none sm:p-6"
   >
     <div class="flex items-center justify-between">
-      <span class="font-display text-3xl font-semibold tracking-tight text-brand-100">
+      <span
+        aria-hidden="true"
+        class="font-display text-3xl font-semibold tracking-tight text-brand-500"
+      >
         {number}
       </span>
       <svg
