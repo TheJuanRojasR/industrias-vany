@@ -8,7 +8,6 @@ const navigation = [
   { href: "/nosotros/", label: "Nosotros" },
   { href: "/servicios/", label: "Servicios" },
   { href: "/productos/", label: "Productos" },
-  { href: "/contacto/", label: "Contacto" },
 ] as const;
 
 const currentPath = Astro.url.pathname;
@@ -82,6 +81,14 @@ function isActive(href: string): boolean {
               </a>
             </li>
           ))}
+          <li class="sm:hidden">
+            <a
+              href="/contacto/"
+              class="mt-1 block rounded-lg bg-brand-900 px-3 py-2.5 text-center text-sm font-semibold text-white transition-colors hover:bg-brand-700"
+            >
+              Contactar
+            </a>
+          </li>
         </ul>
       </details>
     </nav>
