@@ -5,7 +5,7 @@ productType: "freidoras-alto-rendimiento"
 summary: "Tipo de producto confirmado; modelo y especificaciones pendientes de validar."
 description: "Registro de ejemplo para probar el catálogo. Reemplazar con la ficha real del cliente."
 featured: true
-draft: true
+draft: false
 sample: true
 specs:
   - label: "Material"
@@ -17,7 +17,9 @@ features:
 applications:
   - "Uso profesional (ejemplo)"
 warranty: "Garantía pendiente de confirmar."
-images: []
+images:
+  - src: "../../assets/products/demo/freidora.webp"
+    alt: "Freidora industrial de acero inoxidable"
 ---
 
 Ficha de ejemplo. Las medidas, capacidad, materiales, características, garantía e imágenes están pendientes.

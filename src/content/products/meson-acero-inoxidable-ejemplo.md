@@ -5,7 +5,7 @@ productType: "mesones"
 summary: "Tipo de producto confirmado; modelo y especificaciones pendientes de validar."
 description: "Registro de ejemplo para probar el catálogo. Reemplazar con la ficha real del cliente."
 featured: false
-draft: true
+draft: false
 sample: true
 specs:
   - label: "Material"
@@ -17,7 +17,9 @@ features:
 applications:
   - "Uso profesional (ejemplo)"
 warranty: "Garantía pendiente de confirmar."
-images: []
+images:
+  - src: "../../assets/products/demo/meson-acero.webp"
+    alt: "Mesón de trabajo en acero inoxidable"
 ---
 
 Ficha de ejemplo. Las medidas, materiales, características, configuración e imágenes están pendientes.

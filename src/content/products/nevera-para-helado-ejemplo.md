@@ -5,7 +5,7 @@ productType: "neveras-para-helado"
 summary: "Tipo de producto confirmado; modelo y especificaciones pendientes de validar."
 description: "Registro de ejemplo para probar el catálogo. Reemplazar con la ficha real del cliente."
 featured: false
-draft: true
+draft: false
 sample: true
 specs:
   - label: "Material"
@@ -17,7 +17,9 @@ features:
 applications:
   - "Uso profesional (ejemplo)"
 warranty: "Garantía pendiente de confirmar."
-images: []
+images:
+  - src: "../../assets/products/demo/nevera-helado.webp"
+    alt: "Nevera para helados con tapa de vidrio"
 ---
 
 Ficha de ejemplo. Las medidas, capacidad, materiales, características, garantía e imágenes están pendientes.
