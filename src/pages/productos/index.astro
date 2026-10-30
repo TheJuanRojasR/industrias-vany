@@ -57,13 +57,6 @@ const noindex =
       coolingTypes={COOLING_TYPES}
     />
 
-    {import.meta.env.DEV && products.some(({ data }) => data.sample) && (
-      <p class="mt-4 rounded-lg bg-amber-50 px-4 py-3 text-sm text-amber-900">
-        Los productos visibles son ejemplos para probar la navegación. Se excluyen del build de
-        producción hasta que se reemplacen por fichas reales.
-      </p>
-    )}
-
     {products.length > 0 ? (
       <>
         <p data-results-count aria-live="polite" class="mt-6 text-sm text-steel-600">

@@ -63,13 +63,6 @@ const noindex =
     aria-label={`Productos de ${category.name}`}
     class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8"
   >
-    {import.meta.env.DEV && sortedProducts.some(({ data }) => data.sample) && (
-      <p class="mb-6 rounded-lg bg-amber-50 px-4 py-3 text-sm text-amber-900">
-        Esta categoría contiene productos de ejemplo. Se reemplazarán por fichas reales antes de
-        publicar.
-      </p>
-    )}
-
     {sortedProducts.length > 0 ? (
       <ul class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {sortedProducts.map((product) => (
