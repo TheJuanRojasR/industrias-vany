@@ -4,9 +4,9 @@ export const SITE = {
   language: "es",
   locale: "es_CO",
   contact: {
-    whatsappNumber: "",
+    whatsappNumber: "+57 319 233 9500",
     email: "",
-    phone: "",
+    phone: "+57 319 233 9500",
     address: "",
     hours: "",
   },
