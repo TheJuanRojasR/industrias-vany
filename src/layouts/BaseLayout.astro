@@ -4,6 +4,7 @@ import "@fontsource-variable/archivo";
 import "../styles/global.css";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
+import WhatsAppFloat from "../components/WhatsAppFloat.astro";
 import { SITE } from "../config/site";
 
 interface Props {
@@ -53,5 +54,6 @@ const ogImage = image ? new URL(image, canonical).toString() : undefined;
       <slot />
     </main>
     <Footer />
+    <WhatsAppFloat />
   </body>
 </html>
