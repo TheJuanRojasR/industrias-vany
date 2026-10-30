@@ -1,5 +1,6 @@
 ---
 import type { ProductCategory } from "../config/catalog";
+import { withBase } from "../lib/paths";
 
 interface Props {
   category: ProductCategory;
@@ -8,7 +9,7 @@ interface Props {
 
 const { category, index } = Astro.props;
 const number = String(index + 1).padStart(2, "0");
-const href = `/categorias/${category.slug}/`;
+const href = withBase(`/categorias/${category.slug}/`);
 ---
 
 <li class="h-full">

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { withBase } from "../../lib/paths";
 import { SITE } from "../../config/site";
 import { buildWhatsAppUrl } from "../../lib/whatsapp";
 
@@ -33,7 +34,7 @@ const contactSchema = {
       <nav aria-label="Migas de pan" class="text-sm text-steel-500">
         <ol class="flex items-center gap-2">
           <li>
-            <a href="/" class="hover:text-steel-950">
+            <a href={withBase("/")} class="hover:text-steel-950">
               Inicio
             </a>
           </li>
@@ -243,7 +244,7 @@ const contactSchema = {
 
           <p class="text-xs leading-5 text-steel-500">
             Al enviar, se abrirá WhatsApp con tu mensaje. No se almacena en este sitio. Consulta la{" "}
-            <a href="/politica-de-privacidad/" class="underline hover:text-brand-900">
+            <a href={withBase("/politica-de-privacidad/")} class="underline hover:text-brand-900">
               política de privacidad
             </a>
             .

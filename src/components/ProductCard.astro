@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import { getCategoryName, getCoolingTypeName, getProductTypeName } from "../config/catalog";
+import { withBase } from "../lib/paths";
 import { buildWhatsAppUrl } from "../lib/whatsapp";
 
 interface Props {
@@ -22,7 +23,7 @@ const searchText = [
   ...coolingTypeNames,
 ].join(" ");
 const quoteUrl = buildWhatsAppUrl(`Hola, me interesa cotizar el producto ${product.data.name}.`);
-const detailUrl = `/productos/${product.id}/`;
+const detailUrl = withBase(`/productos/${product.id}/`);
 ---
 
 <li

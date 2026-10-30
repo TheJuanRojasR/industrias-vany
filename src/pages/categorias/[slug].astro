@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import ProductCard from "../../components/ProductCard.astro";
 import { PRODUCT_CATEGORIES } from "../../config/catalog";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { withBase } from "../../lib/paths";
 
 export async function getStaticPaths() {
   const products = await getCollection("products", ({ data }) =>
@@ -32,13 +33,13 @@ const noindex =
       <nav aria-label="Migas de pan" class="text-sm text-steel-500">
         <ol class="flex items-center gap-2">
           <li>
-            <a href="/" class="hover:text-steel-950">
+            <a href={withBase("/")} class="hover:text-steel-950">
               Inicio
             </a>
           </li>
           <li aria-hidden="true">/</li>
           <li>
-            <a href="/productos/" class="hover:text-steel-950">
+            <a href={withBase("/productos/")} class="hover:text-steel-950">
               Productos
             </a>
           </li>
@@ -81,7 +82,7 @@ const noindex =
     )}
 
     <a
-      href="/productos/"
+      href={withBase("/productos/")}
       class="mt-8 inline-flex min-h-11 items-center justify-center rounded-lg border border-steel-200 bg-white px-4 py-2 text-sm font-semibold text-steel-800 transition-colors hover:bg-steel-50"
     >
       Volver al catálogo

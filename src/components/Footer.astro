@@ -1,5 +1,6 @@
 ---
 import { SITE } from "../config/site";
+import { withBase } from "../lib/paths";
 
 const year = new Date().getFullYear();
 const hasContactDetails = Boolean(SITE.contact.email || SITE.contact.phone || SITE.contact.address);
@@ -18,22 +19,25 @@ const showContactColumn = hasContactDetails || import.meta.env.DEV;
         <h2 class="text-sm font-semibold text-steel-950">Sitio</h2>
         <ul class="mt-3 space-y-2 text-sm">
           <li>
-            <a href="/nosotros/" class="text-steel-600 hover:text-brand-900">
+            <a href={withBase("/nosotros/")} class="text-steel-600 hover:text-brand-900">
               Nosotros
             </a>
           </li>
           <li>
-            <a href="/servicios/" class="text-steel-600 hover:text-brand-900">
+            <a href={withBase("/servicios/")} class="text-steel-600 hover:text-brand-900">
               Servicios
             </a>
           </li>
           <li>
-            <a href="/productos/" class="text-steel-600 hover:text-brand-900">
+            <a href={withBase("/productos/")} class="text-steel-600 hover:text-brand-900">
               Productos
             </a>
           </li>
           <li>
-            <a href="/preguntas-frecuentes/" class="text-steel-600 hover:text-brand-900">
+            <a
+              href={withBase("/preguntas-frecuentes/")}
+              class="text-steel-600 hover:text-brand-900"
+            >
               Preguntas frecuentes
             </a>
           </li>
@@ -68,7 +72,7 @@ const showContactColumn = hasContactDetails || import.meta.env.DEV;
       <p>
         © {year} {SITE.name}. Todos los derechos reservados.
       </p>
-      <a href="/politica-de-privacidad/" class="hover:text-brand-900">
+      <a href={withBase("/politica-de-privacidad/")} class="hover:text-brand-900">
         Política de privacidad
       </a>
     </div>

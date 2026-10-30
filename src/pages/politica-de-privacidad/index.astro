@@ -1,6 +1,7 @@
 ---
 import { getEntry, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { withBase } from "../../lib/paths";
 
 const entry = await getEntry("legal", "politica-de-privacidad");
 
@@ -25,7 +26,7 @@ const webPageSchema = {
     <nav aria-label="Migas de pan" class="text-sm text-steel-500">
       <ol class="flex items-center gap-2">
         <li>
-          <a href="/" class="hover:text-steel-950">
+          <a href={withBase("/")} class="hover:text-steel-950">
             Inicio
           </a>
         </li>
@@ -52,13 +53,13 @@ const webPageSchema = {
 
     <div class="mt-10 flex flex-wrap gap-3 border-t border-steel-200 pt-6">
       <a
-        href="/contacto/"
+        href={withBase("/contacto/")}
         class="inline-flex min-h-11 items-center justify-center rounded-lg bg-brand-900 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
       >
         Ir a Contacto
       </a>
       <a
-        href="/"
+        href={withBase("/")}
         class="inline-flex min-h-11 items-center justify-center rounded-lg border border-steel-200 bg-white px-4 py-2 text-sm font-semibold text-steel-800 transition-colors hover:bg-steel-50"
       >
         Volver al inicio

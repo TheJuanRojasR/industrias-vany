@@ -8,6 +8,7 @@ import { PRODUCT_CATEGORIES } from "../config/catalog";
 import { FAQS } from "../config/faqs";
 import { SERVICES } from "../config/services";
 import { SITE } from "../config/site";
+import { withBase } from "../lib/paths";
 import { buildWhatsAppUrl } from "../lib/whatsapp";
 
 const products = await getCollection("products", ({ data }) =>
@@ -57,13 +58,13 @@ const quoteUrl = buildWhatsAppUrl("Hola, quisiera consultar sobre equipamiento p
         </p>
         <div class="mt-9 flex flex-wrap gap-3">
           <a
-            href="/productos/"
+            href={withBase("/productos/")}
             class="inline-flex min-h-12 items-center justify-center rounded-lg bg-brand-900 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
           >
             Explorar catálogo
           </a>
           <a
-            href="/servicios/"
+            href={withBase("/servicios/")}
             class="inline-flex min-h-12 items-center justify-center rounded-lg border border-steel-200 bg-white px-5 py-3 text-sm font-semibold text-steel-800 transition-colors hover:border-steel-300 hover:bg-steel-50"
           >
             Conocer servicios
@@ -112,7 +113,10 @@ const quoteUrl = buildWhatsAppUrl("Hola, quisiera consultar sobre equipamiento p
               Una selección de equipos para refrigeración, cocción y extracción.
             </p>
           </div>
-          <a href="/productos/" class="text-sm font-semibold text-brand-900 hover:text-brand-700">
+          <a
+            href={withBase("/productos/")}
+            class="text-sm font-semibold text-brand-900 hover:text-brand-700"
+          >
             Ver todos los productos →
           </a>
         </div>
@@ -145,7 +149,10 @@ const quoteUrl = buildWhatsAppUrl("Hola, quisiera consultar sobre equipamiento p
             Fabricación, instalación, mantenimiento y equipamiento integral para tu proyecto.
           </p>
         </div>
-        <a href="/servicios/" class="text-sm font-semibold text-brand-900 hover:text-brand-700">
+        <a
+          href={withBase("/servicios/")}
+          class="text-sm font-semibold text-brand-900 hover:text-brand-700"
+        >
           Ver todos los servicios →
         </a>
       </div>
@@ -155,7 +162,11 @@ const quoteUrl = buildWhatsAppUrl("Hola, quisiera consultar sobre equipamiento p
           <ServiceCard
             service={service}
             index={index}
-            href={service.detailPage ?? `/servicios/#${service.slug}`}
+            href={
+              service.detailPage
+                ? withBase(service.detailPage)
+                : withBase(`/servicios/#${service.slug}`)
+            }
           />
         ))}
       </ul>
@@ -228,7 +239,7 @@ const quoteUrl = buildWhatsAppUrl("Hola, quisiera consultar sobre equipamiento p
           </p>
         </div>
         <a
-          href="/preguntas-frecuentes/"
+          href={withBase("/preguntas-frecuentes/")}
           class="text-sm font-semibold text-brand-900 hover:text-brand-700"
         >
           Ver todas las preguntas →
@@ -280,7 +291,7 @@ const quoteUrl = buildWhatsAppUrl("Hola, quisiera consultar sobre equipamiento p
           </span>
         ) : null}
         <a
-          href="/contacto/"
+          href={withBase("/contacto/")}
           class="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/25 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/20"
         >
           Ir a Contacto

@@ -1,5 +1,6 @@
 ---
 import type { Service } from "../config/services";
+import { withBase } from "../lib/paths";
 
 interface Props {
   service: Service;
@@ -9,7 +10,7 @@ interface Props {
 
 const { service, index, href: hrefProp } = Astro.props;
 const number = String(index + 1).padStart(2, "0");
-const href = hrefProp ?? service.detailPage ?? `#${service.slug}`;
+const href = hrefProp ?? (service.detailPage ? withBase(service.detailPage) : `#${service.slug}`);
 const ctaLabel = hrefProp ? "Ver servicio" : service.detailPage ? "Ver página" : "Ver detalle";
 ---
 

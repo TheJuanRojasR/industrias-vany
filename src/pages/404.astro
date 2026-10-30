@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { withBase } from "../lib/paths";
 ---
 
 <BaseLayout
@@ -24,13 +25,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
     <div class="mt-8 flex flex-wrap justify-center gap-3">
       <a
-        href="/"
+        href={withBase("/")}
         class="inline-flex min-h-12 items-center justify-center rounded-lg bg-brand-900 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
       >
         Volver al inicio
       </a>
       <a
-        href="/productos/"
+        href={withBase("/productos/")}
         class="inline-flex min-h-12 items-center justify-center rounded-lg border border-steel-200 bg-white px-5 py-3 text-sm font-semibold text-steel-800 transition-colors hover:bg-steel-50"
       >
         Ver catálogo
@@ -41,22 +42,22 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <p class="text-sm text-steel-500">También puedes visitar:</p>
       <ul class="mt-3 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm font-medium">
         <li>
-          <a href="/servicios/" class="text-brand-900 hover:underline">
+          <a href={withBase("/servicios/")} class="text-brand-900 hover:underline">
             Servicios
           </a>
         </li>
         <li>
-          <a href="/nosotros/" class="text-brand-900 hover:underline">
+          <a href={withBase("/nosotros/")} class="text-brand-900 hover:underline">
             Nosotros
           </a>
         </li>
         <li>
-          <a href="/contacto/" class="text-brand-900 hover:underline">
+          <a href={withBase("/contacto/")} class="text-brand-900 hover:underline">
             Contacto
           </a>
         </li>
         <li>
-          <a href="/preguntas-frecuentes/" class="text-brand-900 hover:underline">
+          <a href={withBase("/preguntas-frecuentes/")} class="text-brand-900 hover:underline">
             Preguntas frecuentes
           </a>
         </li>

@@ -4,6 +4,7 @@ import CatalogFilters from "../../components/CatalogFilters.astro";
 import ProductCard from "../../components/ProductCard.astro";
 import { COOLING_TYPES, PRODUCT_CATEGORIES, PRODUCT_TYPES } from "../../config/catalog";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { withBase } from "../../lib/paths";
 
 const products = await getCollection("products", ({ data }) =>
   import.meta.env.PROD ? data.draft !== true : true,
@@ -25,7 +26,7 @@ const noindex =
       <nav aria-label="Migas de pan" class="text-sm text-steel-500">
         <ol class="flex items-center gap-2">
           <li>
-            <a href="/" class="hover:text-steel-950">
+            <a href={withBase("/")} class="hover:text-steel-950">
               Inicio
             </a>
           </li>

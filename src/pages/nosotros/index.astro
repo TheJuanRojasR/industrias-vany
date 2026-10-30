@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { withBase } from "../../lib/paths";
 import { buildWhatsAppUrl } from "../../lib/whatsapp";
 
 const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
@@ -27,7 +28,7 @@ const aboutSchema = {
       <nav aria-label="Migas de pan" class="text-sm text-steel-500">
         <ol class="flex items-center gap-2">
           <li>
-            <a href="/" class="hover:text-steel-950">
+            <a href={withBase("/")} class="hover:text-steel-950">
               Inicio
             </a>
           </li>
@@ -198,7 +199,7 @@ const aboutSchema = {
           </span>
         ) : null}
         <a
-          href="/servicios/"
+          href={withBase("/servicios/")}
           class="inline-flex min-h-12 items-center justify-center rounded-lg border border-steel-200 bg-white px-5 py-3 text-sm font-semibold text-steel-800 transition-colors hover:bg-steel-50"
         >
           Conocer servicios

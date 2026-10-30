@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import logo from "../assets/brand/logo-provisional.jpeg";
 import { SITE } from "../config/site";
+import { withBase } from "../lib/paths";
 
 const navigation = [
   { href: "/", label: "Inicio" },
@@ -13,13 +14,14 @@ const navigation = [
 const currentPath = Astro.url.pathname;
 
 function isActive(href: string): boolean {
-  return href === "/" ? currentPath === "/" : currentPath.startsWith(href);
+  const target = withBase(href);
+  return href === "/" ? currentPath === target : currentPath.startsWith(target);
 }
 ---
 
 <header class="sticky top-0 z-50 border-b border-steel-200 bg-white/95 backdrop-blur">
   <div class="mx-auto flex min-h-[4.5rem] max-w-6xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
-    <a href="/" aria-label={`${SITE.name} — Inicio`} class="shrink-0">
+    <a href={withBase("/")} aria-label={`${SITE.name} — Inicio`} class="shrink-0">
       <Image src={logo} alt="" width={270} height={88} class="h-12 w-auto object-contain" />
     </a>
 
@@ -28,7 +30,7 @@ function isActive(href: string): boolean {
         {navigation.map((item) => (
           <li>
             <a
-              href={item.href}
+              href={withBase(item.href)}
               aria-current={isActive(item.href) ? "page" : undefined}
               class:list={[
                 "rounded-lg px-3 py-2 text-sm font-medium transition-colors",
@@ -44,7 +46,7 @@ function isActive(href: string): boolean {
       </ul>
 
       <a
-        href="/contacto/"
+        href={withBase("/contacto/")}
         class="hidden min-h-11 items-center justify-center rounded-lg bg-brand-900 px-4 text-sm font-semibold text-white transition-colors hover:bg-brand-700 sm:inline-flex"
       >
         Contactar
@@ -68,7 +70,7 @@ function isActive(href: string): boolean {
           {navigation.map((item) => (
             <li>
               <a
-                href={item.href}
+                href={withBase(item.href)}
                 aria-current={isActive(item.href) ? "page" : undefined}
                 class:list={[
                   "block rounded-lg px-3 py-2.5 text-sm font-medium",
@@ -83,7 +85,7 @@ function isActive(href: string): boolean {
           ))}
           <li class="sm:hidden">
             <a
-              href="/contacto/"
+              href={withBase("/contacto/")}
               class="mt-1 block rounded-lg bg-brand-900 px-3 py-2.5 text-center text-sm font-semibold text-white transition-colors hover:bg-brand-700"
             >
               Contactar

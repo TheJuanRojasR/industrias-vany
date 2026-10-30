@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { withBase } from "../../lib/paths";
 import { buildServiceSchema } from "../../lib/service-schema";
 import { buildWhatsAppUrl } from "../../lib/whatsapp";
 
@@ -26,13 +27,13 @@ const serviceSchema = buildServiceSchema({
       <nav aria-label="Migas de pan" class="text-sm text-steel-500">
         <ol class="flex flex-wrap items-center gap-2">
           <li>
-            <a href="/" class="hover:text-steel-950">
+            <a href={withBase("/")} class="hover:text-steel-950">
               Inicio
             </a>
           </li>
           <li aria-hidden="true">/</li>
           <li>
-            <a href="/servicios/" class="hover:text-steel-950">
+            <a href={withBase("/servicios/")} class="hover:text-steel-950">
               Servicios
             </a>
           </li>
@@ -172,7 +173,7 @@ const serviceSchema = buildServiceSchema({
           </span>
         ) : null}
         <a
-          href="/servicios/"
+          href={withBase("/servicios/")}
           class="inline-flex min-h-12 items-center justify-center rounded-lg border border-steel-200 bg-white px-5 py-3 text-sm font-semibold text-steel-800 transition-colors hover:bg-steel-50"
         >
           Volver a Servicios
